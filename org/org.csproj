@@ -7,7 +7,7 @@
     <ProjectGuid>{EF008AF4-E9D9-4D83-B377-5DB04EF97DEA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>org</RootNamespace>
-    <AssemblyName>org</AssemblyName>
+    <AssemblyName>Organik</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -66,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +80,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\google logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
