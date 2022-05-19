@@ -442,6 +442,7 @@ namespace org
             this.rtb17.TabIndex = 27;
             this.rtb17.Text = "";
             this.rtb17.TextChanged += new System.EventHandler(this.rtb17_TextChanged);
+            this.rtb17.MouseEnter += new System.EventHandler(this.rtb17_MouseEnter);
             // 
             // rtb16
             // 
