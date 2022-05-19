@@ -24,9 +24,9 @@ C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startu
 - Integrated Google Search 🔎
 ### Coming up...
 - UI/UX improvements 🎨
-- Adding calendar 📆
+- Calendar 📆
 - Android app 📱
-- Sync with Google Drive ☁️
+- Sync notes on the Cloud ☁️
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
