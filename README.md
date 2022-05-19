@@ -9,8 +9,7 @@ Organik is a quick and dirty day organizer for Windows.
 Organik works as a standalone Windows desktop application, written in C# using Windows Forms .NET framework. 
 Data is saved automatically in your Documents folder as a XML file.
 
-![](https://github.com/fnccpp/organik/blob/master/Organik.gif) 
-<img src="https://github.com/fnccpp/organik/blob/master/Organik.gif" width="100" height="100">
+<img src="https://github.com/fnccpp/organik/blob/master/Organik.gif" width="320" height="380">
 
 It's supposed to stay in the background. It makes sense to execute it at Windows startup. To do so, copy a link to the executable in your startup folder:
 
