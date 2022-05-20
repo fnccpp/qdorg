@@ -1,6 +1,6 @@
 # Organik 🍀
 
-Organik is a quick and dirty day organizer for Windows.
+A quick and dirty day organizer for Windows
 
  ![](https://img.shields.io/github/last-commit/fnccpp/organik) ![](https://img.shields.io/badge/platforms-Windows-lightgrey) ![](https://img.shields.io/badge/license-MIT-brightgreen) ![](https://img.shields.io/tokei/lines/github/fnccpp/organik)
 
