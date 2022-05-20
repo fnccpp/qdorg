@@ -11,7 +11,7 @@ Data is saved automatically in your Documents folder as a XML file.
 
 <img src="https://github.com/fnccpp/organik/blob/master/Organik.gif" width="320" height="380">
 
-It's supposed to stay in the background. It makes sense to execute it at Windows startup. To do so, copy a link to the executable in your startup folder:
+You may want it to be executed automatically at Windows startup. To do so, create a link to the executable in your startup folder:
 
 ```sh
 C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
