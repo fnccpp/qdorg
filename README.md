@@ -23,7 +23,7 @@ C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startu
 - Autosave 💾
 - Integrated Google Search 🔎
 ### Coming up...
-- UI/UX improvements 🎨
+- UI/UX improvements and fixes 🎨
 - Calendar 📆
 - Android app 📱
 - Sync notes on the Cloud ☁️
