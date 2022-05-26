@@ -26,7 +26,7 @@ C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startu
 - ~~Android app~~ ✔
 - UI/UX improvements and fixes 🎨
 - Calendar 📆
-- Sync notes on the Cloud ☁️
+- Sync tasks on the Cloud ☁️
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
