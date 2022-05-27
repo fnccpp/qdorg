@@ -471,7 +471,6 @@ namespace org
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(234, 25);
             this.tbSearch.TabIndex = 35;
-            this.tbSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.tbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnter);
             // 
             // lblOra
@@ -484,7 +483,6 @@ namespace org
             this.lblOra.Size = new System.Drawing.Size(48, 30);
             this.lblOra.TabIndex = 36;
             this.lblOra.Text = "Ora";
-            this.lblOra.Click += new System.EventHandler(this.label14_Click);
             // 
             // timer1
             // 

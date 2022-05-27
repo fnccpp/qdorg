@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -15,193 +17,152 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Diagnostics;
 using System.IO;
 using System.Collections;
+//using Newtonsoft.Json;
+
 
 namespace org
 {
     public partial class MainForm : Form
     {
-        private string XMLpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Organik";
-        private string XMLfilename = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Organik\\tasks.xml";
-        private XmlDocument doc = null;
-        private XmlNodeList listaNodi = null; 
+        private string JSONpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Organik";
+        private string JSONfilename = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Organik\\tasks.json";
+        string stringaJSON = "";
+        tasksClass tasksObject = new tasksClass();
+        //tasksClass tasksObject;
 
         public MainForm()
         {
             InitializeComponent();
-            // crea file xml se non esiste gia, se c'è carica i valori
-            doc = new XmlDocument();
-            if (!File.Exists(XMLfilename))
+            // crea file JSON se non esiste già
+            if (!File.Exists(JSONfilename))
             {
-                System.IO.Directory.CreateDirectory(XMLpath);
-                XDocument doc2 = new XDocument(
-                    new XElement("tasks",
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", ""),
-                        new XElement("task", "")
-                        )
-                    );
-                doc2.Save(XMLfilename);
+                System.IO.Directory.CreateDirectory(JSONpath);
+                stringaJSON += "{";
+                for (int i = 0; i<13; i++)
+                {
+                    int ora = i + 8;
+                    stringaJSON += ("\n\t\"task" + ora + "\":\"\",");
+                }
+                stringaJSON += "\n\t\"task21\":\"\"\n}";
+                File.WriteAllText(JSONfilename, stringaJSON); 
             }
-
-                doc.Load(XMLfilename);
-            XmlNode root = doc.DocumentElement;
-            listaNodi = doc.SelectNodes("tasks/task");
-            loadTasks();            
+            //carica i valori dal JSON alla classe
+            loadTasks();
         }
-
-        private void richTextBox17_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        // handler dell'invio di google search
-        private void CheckEnter(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13 && tbSearch.Text != "")
-            {
-                // Enter key pressed
-                Process.Start("https://www.google.com/search?q=" + tbSearch.Text);
-                tbSearch.Text = "";
-            }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lblOra.Text = DateTime.Now.ToLongTimeString();
-            lblData.Text = DateTime.Now.ToShortDateString();
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             timer1.Start();
         }
-
+        
+        // JSON -> classe
         private void loadTasks()
         {
-            
-            //fai con ciclo for
-            rtb08.Text = listaNodi[0].InnerText;
-            rtb09.Text = listaNodi[1].InnerText;
-            rtb10.Text = listaNodi[2].InnerText;
-            rtb11.Text = listaNodi[3].InnerText;
-            rtb12.Text = listaNodi[4].InnerText;
-            rtb13.Text = listaNodi[5].InnerText;
-            rtb14.Text = listaNodi[6].InnerText;
-            rtb15.Text = listaNodi[7].InnerText;
-            rtb16.Text = listaNodi[8].InnerText;
-            rtb17.Text = listaNodi[9].InnerText;
-            rtb18.Text = listaNodi[10].InnerText;
-            rtb19.Text = listaNodi[11].InnerText;
-            rtb20.Text = listaNodi[12].InnerText;
-            rtb21.Text = listaNodi[13].InnerText;
+            stringaJSON = File.ReadAllText(JSONfilename);
+            Console.WriteLine(stringaJSON);
+            tasksObject = JsonSerializer.Deserialize<tasksClass>(stringaJSON);
+            rtb08.Text = tasksObject.task8;
+            rtb09.Text = tasksObject.task9;
+            rtb10.Text = tasksObject.task10;
+            rtb11.Text = tasksObject.task11;
+            rtb12.Text = tasksObject.task12;
+            rtb13.Text = tasksObject.task13;
+            rtb14.Text = tasksObject.task14;
+            rtb15.Text = tasksObject.task15;
+            rtb16.Text = tasksObject.task16;
+            rtb17.Text = tasksObject.task17;
+            rtb18.Text = tasksObject.task18;
+            rtb19.Text = tasksObject.task19;
+            rtb20.Text = tasksObject.task20;
+            rtb21.Text = tasksObject.task21;
         }
 
+        // text changed
         private void rtb08_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[0].InnerText = rtb08.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task8 = rtb08.Text;
+            stringaJSON = System.Text.Json.JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb09_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[1].InnerText = rtb09.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task9 = rtb09.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb10_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[2].InnerText = rtb10.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task10 = rtb10.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb11_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[3].InnerText = rtb11.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task11 = rtb11.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb12_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[4].InnerText = rtb12.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task12 = rtb12.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb13_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[5].InnerText = rtb13.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task13 = rtb13.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb14_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[6].InnerText = rtb14.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task14 = rtb14.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb15_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[7].InnerText = rtb15.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task15 = rtb15.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb16_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[8].InnerText = rtb16.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task16 = rtb16.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb17_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[9].InnerText = rtb17.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task17 = rtb17.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb18_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[10].InnerText = rtb18.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task18 = rtb18.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb19_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[11].InnerText = rtb19.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task19 = rtb19.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb20_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[12].InnerText = rtb20.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task20 = rtb20.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
-
         private void rtb21_TextChanged(object sender, EventArgs e)
         {
-            listaNodi[13].InnerText = rtb21.Text;
-            doc.Save(XMLfilename);
+            tasksObject.task21 = rtb21.Text;
+            stringaJSON = JsonSerializer.Serialize(tasksObject);
+            File.WriteAllText(JSONfilename, stringaJSON);
         }
 
-        //Bottoni Delete
+        // Visibilità bottoni Delete 
         private void MainForm_MouseEnter(object sender, EventArgs e)
         {
             btnDel08.Visible = false;
@@ -457,6 +418,8 @@ namespace org
             btnDel20.Visible = false;
             btnDel21.Visible = true;
         }
+
+        // Click bottoni Delete
         private void btnDel08_Click(object sender, EventArgs e)
         {
             rtb08.Text = "";
@@ -527,5 +490,63 @@ namespace org
             rtb21.Text = "";
             rtb21.Focus();
         }
+
+        // handler dell'invio di google search
+        private void CheckEnter(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13 && tbSearch.Text != "")
+            {
+                // Enter key pressed
+                Process.Start("https://www.google.com/search?q=" + tbSearch.Text);
+                tbSearch.Text = "";
+            }
+        }
+
+        // ora e data
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblOra.Text = DateTime.Now.ToLongTimeString();
+            lblData.Text = DateTime.Now.ToShortDateString();
+        }
+
+    }
+
+    // classe tasks
+    public class tasksClass
+    {
+        //tasksClass(string task8, string task9, string task10, string task11, string task12, string task13, string task14, string task15, string task16, string task17, string task18, string task19, string task20, string task21)
+        //{
+        //    this.task8 = task8;
+        //    this.task9 = task9;
+        //    this.task10 = task10;
+        //    this.task11 = task11;
+        //    this.task12 = task12;
+        //    this.task13 = task13;
+        //    this.task14 = task14;
+        //    this.task15 = task15;
+        //    this.task16 = task16;
+        //    this.task17 = task17;
+        //    this.task18 = task18;
+        //    this.task19 = task19;
+        //    this.task20 = task20;
+        //    this.task21 = task21;
+        //}
+
+        public string task8 { get; set; }
+        public string task9 { get; set; }
+        public string task10 { get; set; }
+        public string task11 { get; set; }
+        public string task12 { get; set; }
+        public string task13 { get; set; }
+        public string task14 { get; set; }
+        public string task15 { get; set; }
+        public string task16 { get; set; }
+        public string task17 { get; set; }
+        public string task18 { get; set; }
+        public string task19 { get; set; }
+        public string task20 { get; set; }
+        public string task21 { get; set; }
+
     }
 }
+    
