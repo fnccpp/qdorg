@@ -17,7 +17,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Diagnostics;
 using System.IO;
 using System.Collections;
-//using Newtonsoft.Json;
 
 
 namespace org
@@ -514,24 +513,6 @@ namespace org
     // classe tasks
     public class tasksClass
     {
-        //tasksClass(string task8, string task9, string task10, string task11, string task12, string task13, string task14, string task15, string task16, string task17, string task18, string task19, string task20, string task21)
-        //{
-        //    this.task8 = task8;
-        //    this.task9 = task9;
-        //    this.task10 = task10;
-        //    this.task11 = task11;
-        //    this.task12 = task12;
-        //    this.task13 = task13;
-        //    this.task14 = task14;
-        //    this.task15 = task15;
-        //    this.task16 = task16;
-        //    this.task17 = task17;
-        //    this.task18 = task18;
-        //    this.task19 = task19;
-        //    this.task20 = task20;
-        //    this.task21 = task21;
-        //}
-
         public string task8 { get; set; }
         public string task9 { get; set; }
         public string task10 { get; set; }
