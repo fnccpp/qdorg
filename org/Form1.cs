@@ -27,7 +27,6 @@ namespace org
         private string JSONfilename = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Organik\\tasks.json";
         string stringaJSON = "";
         tasksClass tasksObject = new tasksClass();
-        //tasksClass tasksObject;
 
         public MainForm()
         {
