@@ -9,7 +9,7 @@ A quick and dirty day organizer for Windows
 QDorg works as a standalone Windows desktop application, written in C# using Windows Forms .NET framework. 
 Data is saved automatically in your Documents folder as a XML file.
 
-<img src="https://github.com/fnccpp/qdorg/blob/master/Organik.gif" width="320" height="380">
+<img src="https://github.com/fnccpp/qdorg/blob/master/qdorg.png" width="320" height="380">
 
 You may want it to be executed automatically at Windows startup. To do so, create a link to the executable in your startup folder:
 
