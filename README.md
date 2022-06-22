@@ -7,7 +7,7 @@ A quick and dirty day organizer for Windows
 ## Description
 
 QDorg works as a standalone Windows desktop application, written in C# using Windows Forms .NET framework. 
-Data is saved automatically in your Documents folder as a XML file.
+Data is saved automatically in your Documents folder as a JSON file.
 
 <img src="https://github.com/fnccpp/qdorg/blob/master/qdorg.png" width="320" height="380">
 
